@@ -1,0 +1,31 @@
+server:
+  port: 6932
+  servlet:
+    context-path: '/api'
+
+jwt:
+  secret: 'yxui9m1+jjQZVUAHReP247PqYLE7ihS5Md17aij3FSlD1Aj8BbqpIqyH+tQPrFHXpfq5eY43guRp9dSzVMSgG/u6XWBAiWvSV5GqiLgWPhBj0fPob+Tgnwzm2qb4az/22PmjuOgJpkVfl0hDZUpnyvNsxWvHXGV1ccc/XbPG0U3OWaIMLxxlUeDkX9h92eCZrlSYOR6qJ2BQj3S56u6pHYCRKPpOA8sSaCBDQ=='
+  type: 'JWT'
+  issuer: 'ITMO 160RXTX Team'
+  audience: '160RXTX Backend'
+
+spring:
+  datasource:
+    url: 'jdbc:postgresql://localhost:5432/postgres'
+    username: 'postgres'
+    password: 'postgres'
+
+
+  jpa.hibernate.ddl-auto: create-drop
+
+logging:
+  file.name: './logs/log.txt'
+
+  pattern.console: '%d{yyyy-MM-dd HH:mm:ss} - %msg%n'
+  pattern.file: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'
+
+  level:
+    root: INFO
+    ru.itmo: DEBUG
+    org.springframework.web: ERROR
+
