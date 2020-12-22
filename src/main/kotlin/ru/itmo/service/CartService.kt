@@ -36,12 +36,14 @@ class CartService(
             return CartStateView(cartId = cartId, null, state = CartState.BUSY)
         }
 
-        val productViews = sessionProductDao.findBySession_Id(checkNotNull(cartSession.id)).map { sessionProduct ->
-            val product = checkNotNull(sessionProduct.product)
-            val quantity = checkNotNull(sessionProduct.quantity)
+        val productViews = sessionProductDao.findBySession_Id(checkNotNull(cartSession.id))
+            .map { sessionProduct ->
+                val product = checkNotNull(sessionProduct.product)
+                val quantity = checkNotNull(sessionProduct.quantity)
 
-            ProductView(id = product.id, name = product.name, quantity = quantity)
-        }
+                ProductView(id = product.id, name = product.name, quantity = quantity)
+            }
+            .filter { view -> view.quantity != null && view.quantity > 0 }
 
         return CartStateView(cartId = cartId, products = productViews, state = CartState.OWNED)
     }
