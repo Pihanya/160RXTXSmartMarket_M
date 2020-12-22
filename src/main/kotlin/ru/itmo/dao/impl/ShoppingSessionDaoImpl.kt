@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository
 import ru.itmo.dao.ShoppingSessionDao
 import ru.itmo.model.entity.Cart
 import ru.itmo.model.entity.ShoppingSession
+import ru.itmo.model.entity.User
 import javax.persistence.EntityManager
 import javax.persistence.criteria.CriteriaBuilder
 import javax.persistence.criteria.Predicate
@@ -49,7 +50,7 @@ class ShoppingSessionDaoImpl(
         val predicate = cb.and(
             createActivePredicate(cb, root),
             cb.equal(
-                root.get<Cart>(ShoppingSession.CART).get<Long>(Cart.ID),
+                root.get<Cart>(ShoppingSession.USER).get<Long>(User.ID),
                 cb.parameter(Long::class.javaObjectType, "userId")
             )
         )
